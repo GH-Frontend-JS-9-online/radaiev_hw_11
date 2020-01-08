@@ -1,0 +1,45 @@
+.table tr th, .table tr td {
+	border: 1px solid black;
+}
+
+.main {
+	display: flex;
+	justify-content: space-between;
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.form_container {
+	width: 600px;
+	background: #cbcbcb;
+	border-radius: 10px;
+	box-shadow: 0 0 10px black;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	margin: 15px 0;
+}
+
+input {
+	margin: 5px 0;
+	width: 400px;
+}
+
+.various_pass {
+	color: red;
+}
+
+.info {
+	display: inline-block;
+	width: 300px;
+}
+
+.form_info {
+	color: red;
+}
