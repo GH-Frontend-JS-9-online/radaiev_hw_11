@@ -64,23 +64,36 @@ let url = 'http://localhost:3000/api/users';
 	let user = getData();
 
 
-	//if(user.name != "") {
+	
 		return fetch(url, {
 			method: method,
 			body: JSON.stringify(user),
 			headers: headers
 		}).then(response => {
-			return response.json();
+			if(response.ok) return response.json();	
+			
+			return response.json().then(error => {
+				let e = new Error(error);
+				e.data = error;
+				throw e;
+			})
 		});
-	// } else {
-	// 	return false;
-	// }
+
 }
 
 
 	
  btn_signUp.onclick = () => {
  	sendRequest("POST", url)
-	.then(data => console.log(data))
+	.then(data => {
+		console.log(data);
+		 let showError = document.createElement('div');
+		 showError.style.color = 'blue';
+		 showError.innerHTML = `Вы успешно зарегистрировались, чтобы обновить список слева, перезапустите <b>node server</b>`;
+		 form.after(showError);
+	}).catch(err => {
+		console.log(err);
+		alert(err);
+	})
  }
 

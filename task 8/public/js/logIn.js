@@ -28,14 +28,27 @@ showUsers();
  		body: JSON.stringify(user),
  		headers: headers,
  	}).then(response => {
- 		return response.json();
- 	})
+ 		if(response.ok) return response.json();
+
+ 		return response.json().then(error => {
+ 			let e = new Error(error);
+ 			e.data = error;
+ 			throw e;
+ 		})
+ 	});
  }
 
 
 btn_logIn.onclick = () => {
 	logIn().then(data => {
 		console.log(data);
+		let div = document.createElement('div');
+		div.style.color = 'blue';
+		div.innerHTML = 'Вы успешно авторизировались))';
+		form.after(div);
 	})
-	.catch(err => console.log(err))
+	.catch(err => {
+		console.log(err);
+		alert(err);
+	})
 }
