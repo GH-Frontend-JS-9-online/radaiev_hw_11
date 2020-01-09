@@ -31,20 +31,10 @@
 // 	.then(data => console.log(data))
 // 	.catch(err => console.log(err));
 
+import {showUsers} from './module.js';
 
-fetch('http://localhost:3000/db')
-	.then(response => response.json())
-	.then(data => data.users)
-	.then(users => {
-		let table = document.querySelector('.table');
 
-		for(let item of users){
-		let tr = document.createElement('tr');
-		tr.innerHTML = `<td>${item.name}</td><td>${item.email}</td>`;
-		table.append(tr);	
-			//console.log(item);
-		}
-	})
+showUsers();
 
 
 function CreateNewUser(name, email, password) {
@@ -89,7 +79,8 @@ let url = 'http://localhost:3000/api/users';
 
 
 	
- btn.onclick = () => {
+ btn_signUp.onclick = () => {
  	sendRequest("POST", url)
 	.then(data => console.log(data))
  }
+
